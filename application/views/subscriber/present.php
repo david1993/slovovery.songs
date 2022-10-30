@@ -1,0 +1,1 @@
+<p>Такой адрес уже есть в нашем списке. <a href="http://www.mebelboom.com/subscriber/remove/<?= $code?>"">Вы можете отписаться.</a></p>

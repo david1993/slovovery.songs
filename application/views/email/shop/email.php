@@ -1,0 +1,10 @@
+<?php if($values['name']):?>
+	<p>Клиент: <?=$values['name']?></p>
+<?php endif;?>
+<?php if($values['phone']):?>
+	<p>Телефон: <?=$values['phone']?></p>
+<?php endif;?>
+<p>E-mail: <?=$values['email']?></p>
+<?php if($values['message']):?>
+	<p>Сообщение: <?=$values['message']?></p>
+<?php endif;?>

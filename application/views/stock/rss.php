@@ -1,0 +1,1 @@
+<?=Feed::create($info, $items)?> 

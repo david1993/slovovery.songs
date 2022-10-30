@@ -1,0 +1,1 @@
+<script type="text/javascript" >showShops(<?=$user_id?>, 0);</script>
