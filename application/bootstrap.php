@@ -1,5 +1,15 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
+if (true) {
+    if (strpos($_SERVER['REQUEST_URI'], '/song/view/') === 0) {
+        preg_match_all('!\d+!', $_SERVER['REQUEST_URI'], $matches);
+        header('Location: http://slovovery.ru/cerkov/song/redirect_to/?id=' . $matches[0][0]);
+    } else {
+        header('Location: http://slovovery.ru/cerkov/song/');
+    }
+    exit;
+}
+
 // -- Environment setup --------------------------------------------------------
 
 // Load the core Kohana class
