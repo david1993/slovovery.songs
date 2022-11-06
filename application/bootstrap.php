@@ -3,9 +3,9 @@
 if (true) {
     if (strpos($_SERVER['REQUEST_URI'], '/song/view/') === 0) {
         preg_match_all('!\d+!', $_SERVER['REQUEST_URI'], $matches);
-        header('Location: http://slovovery.ru/cerkov/song/redirect_to/?id=' . $matches[0][0]);
+        header('Location: http://slovovery.ru/24_7/song/redirect_to/?id=' . $matches[0][0]);
     } else {
-        header('Location: http://slovovery.ru/cerkov/song/');
+        header('Location: http://slovovery.ru/24_7/song/');
     }
     exit;
 }
