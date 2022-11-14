@@ -137,7 +137,15 @@ class Controller_Song extends Controller_Layout
 
         $this->template->navibar = View::factory('page/navibar')->set('nav', Controller_Page::nav());
         $this->template->navibar->nav ['Каталог песен'] ['class'] = 'active';
+
         if ($song->loaded() and ($song->published() or Auth::instance()->logged_in('admin'))) {
+            $newId = (int)json_decode(file_get_contents('http://slovovery.ru/24_7/song/redirect_to/?id=' . $song->id), true);
+            $newSongUrl = 'http://slovovery.ru/24_7/song/' . $newId . '/';
+            if (strpos($_SERVER['HTTP_REFERER'], 'http://slovovery.ru/') === 0) {
+                header('Location: ' . $newSongUrl);
+                exit;
+            }
+
             $slides = $song->slides->where('active', '=', '1')->find_all();
             $accords = $song->accords->where('active', '=',
                 '1')->order_by('publish_time')->order_by('id_user')->find_all();
@@ -161,7 +169,7 @@ class Controller_Song extends Controller_Layout
             $this->template->title = $song->name . " - Слова & Аккорды";
             $this->template->rightBar = View::factory('song/rightbar/view')->bind('song', $song);
             $this->template->content = View::factory('song/view')->bind('song', $song)->bind('slides',
-                $slides)->bind('accords', $accords);
+                $slides)->bind('accords', $accords)->bind('newSongUrl', $newSongUrl);
 
         } else {
             $this->template->h1 = 'Песня не найдена ):';
@@ -208,6 +216,7 @@ class Controller_Song extends Controller_Layout
         if (!Auth::instance()->logged_in('admin')) {
 
             $this->request->redirect($this->request->referrer());
+
             return;
         }
         $id = $this->request->param('id');
@@ -224,6 +233,7 @@ class Controller_Song extends Controller_Layout
         if (!Auth::instance()->logged_in('admin')) {
 
             $this->request->redirect($this->request->referrer());
+
             return;
         }
         $id = $this->request->param('id');
@@ -302,6 +312,7 @@ class Controller_Song extends Controller_Layout
             $song->delete();
 
             $this->request->redirect(isset($_REQUEST['r']) ? $_REQUEST['r'] : '/song');
+
             return;
         }
 
@@ -316,6 +327,7 @@ class Controller_Song extends Controller_Layout
         require APPPATH . 'classes/songs/ppt.php';
         if (!Auth::instance()->logged_in('admin')) {
             echo 'You are not admin';
+
             return;
         }
         $countNoUpdated = ORM::factory('song')->where('updated', '=', '0')->find_all()->count();

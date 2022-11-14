@@ -48,7 +48,11 @@
 					<?php endif;?>	
 				</div>
 			<?php endforeach;?> 
-		<?php endif;?>	
+		<?php endif;?>
+        <br/>
+        Сайт скоро переедет на        <a href="http://slovovery.ru/">slovovery.ru</a><br/>
+        <a href="<?=$newSongUrl?>"><?=$song->name?> -  на новом сайте</a>
+
 		<?php
 			
 			if($user):
