@@ -26,6 +26,15 @@
  		<script type="text/javascript" src="/js/html5.js"></script>
 		<link rel="stylesheet" href="/css/ie.css" type="text/css" media="screen">
 	<![endif]-->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EDRPTK2J2G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-EDRPTK2J2G');
+    </script>
 </head>
 <body id="page1">
 	<!--==============================header=================================-->
