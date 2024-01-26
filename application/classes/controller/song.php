@@ -141,10 +141,8 @@ class Controller_Song extends Controller_Layout
         if ($song->loaded() and ($song->published() or Auth::instance()->logged_in('admin'))) {
             $newId = (int)json_decode(file_get_contents('http://slovovery.ru/24_7/song/redirect_to/?id=' . $song->id), true);
             $newSongUrl = 'http://slovovery.ru/24_7/song/' . $newId . '/';
-            if (isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], 'http://slovovery.ru/') === 0) {
-                header('Location: ' . $newSongUrl);
-                exit;
-            }
+            header('Location: ' . $newSongUrl,true,301);
+            exit;
 
             $slides = $song->slides->where('active', '=', '1')->find_all();
             $accords = $song->accords->where('active', '=',
